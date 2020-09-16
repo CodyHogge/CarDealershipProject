@@ -1,0 +1,128 @@
+package com.system;
+
+import java.util.Date;
+
+public class Car {
+	private String make;
+	private String model;
+	private String vin;
+	private Owner owner;
+	private Date ownerDate;
+	private Date dealerDate;
+	private int daysOnLot;
+	private int odometer;
+	private int year;
+	private double msrp;
+	private double auctionPrice;
+	private double auctionMin;
+	private String condition;
+	
+	public Car() {}
+
+	
+	
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+	
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
+	public String getMake() {
+		return make;
+	}
+
+	public void setMake(String make) {
+		this.make = make;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public String getVin() {
+		return vin;
+	}
+
+	public void setVin(String vin) {
+		this.vin = vin;
+	}
+
+	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}
+
+	public Date getOwnerDate() {
+		return ownerDate;
+	}
+
+	public void setOwnerDate(Date ownerDate) {
+		this.ownerDate = ownerDate;
+	}
+
+	public Date getDealerDate() {
+		return dealerDate;
+	}
+
+	public void setDealerDate(Date dealerDate) {
+		this.dealerDate = dealerDate;
+	}
+
+	public int getOdometer() {
+		return odometer;
+	}
+
+	public void setOdometer(int odometer) {
+		this.odometer = odometer;
+	}
+
+	public double getMsrp() {
+		return msrp;
+	}
+
+	public void setMsrp(double msrp) {
+		this.msrp = msrp;
+	}
+
+	public double getAuctionPrice() {
+		return auctionPrice;
+	}
+
+	public void setAuctionPrice(double auctionPrice) {
+		this.auctionPrice = auctionPrice;
+	}
+	
+	public double getAuctionMin() {
+		return this.auctionMin;
+	}
+	
+	public void setAuctionMin() {
+		this.auctionMin = this.msrp * 0.9;
+	}
+	
+	public int getDaysOnLot() {
+		return this.daysOnLot;
+	}
+	
+	public void setDaysOnLot(Date current) {
+		this.daysOnLot = current.compareTo(dealerDate);
+	}
+
+}

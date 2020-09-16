@@ -1,0 +1,51 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cody's Car Lot</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+
+<span class="top-banner">Welcome to the Business Page!</span>
+
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Quick Nav
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="homePage.jsp">Home Page</a>
+    <a class="dropdown-item" href="inventory.jsp">Inventory</a>
+    <a class="dropdown-item" href="businessPage.jsp">Business Reports</a>
+  </div>
+</div>
+
+<h3>Add New Inventory</h3>
+<span class="action" value="add"/>
+	<form class="container" id="addInventoryContainer" action="inventoryUpdaterServlet" method="post">
+		<div class="form-group">
+			<label for="make"> Make: </label>
+			<select class="form-control" name="make" id="make">
+				<option value="mazda">Mazda</option>
+				<option value="toyota">Toyota</option>
+				<option value="ford">Ford</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<c:if test="${make == mazda}">
+				<select class="form-control" name="model" id="model">
+					<option value="mazda3">Mazda3</option>
+					<option value="cx5">CX5</option>
+				</select>
+			</c:if>
+		</div>
+	</form>
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cody's Car Lot</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+
+<span class="top-banner">Welcome to the Inventory Page!</span>
+
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Quick Nav
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="homePage.jsp">Home Page</a>
+    <a class="dropdown-item" href="inventory.jsp">Inventory</a>
+    <a class="dropdown-item" href="business.jsp">Business Reports</a>
+  </div>
+</div>
+
+<h3>Available Inventory</h3>
+<h4>Total Cars Available:<c:out value="${inventoryList.size()}"/></h4>
+<table class="avail-cars">
+	<tr>
+		<th>Picture</th>
+		<th>Name</th>
+		<th>MSRP</th>
+		<th>Miles</th>
+	</tr>
+	<c:forEach var="car" items="${inventoryList}">
+		<c:if test="${inventoryList.getOwnerDate() == null}">
+			<tr>
+				<td>Picture</td>
+				<td><c:out value="${inventoryList.getYear()}  ${inventoryList.getMake()}  ${inventoryList.getModel()}"/></td>
+				<td><c:out value="${inventoryList.getMsrp()}"/></td>
+				<td><c:out value="${inventoryList.getOdometer()}"/></td>
+			</tr>
+			<tr>
+				<td class="car-description">
+					<p><c:out value="VIN:${inventoryList.getVin()} Color:${inventoryList.getColor()} + Condition:${inventoryList.getCondition()}
+					+ Days on the Lot:${inventoryList.getDaysOnLot()} + Auction Min:${inventoryList.getAuctionMin()}"/></p>
+				</td>
+			</tr>
+		</c:if>
+	</c:forEach>
+
+</table>
+
+</body>
+</html>

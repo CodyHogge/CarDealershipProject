@@ -1,0 +1,52 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cody's Car Lot</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+
+
+<span class="top-banner">Welcome to Cody's Car Lot!</span>
+
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Quick Nav
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="homePage.jsp">Home Page</a>
+    <a class="dropdown-item" href="inventory.jsp">Inventory</a>
+    <a class="dropdown-item" href="carsSold.jsp">Cars Sold!</a>
+    <a class="dropdown-item" href="business.jsp">Business Reports</a>
+  </div>
+</div>
+
+
+<p class="home-paragraph"> This project completes the assigned "Car Dealership Project." The tasking for this was
+to create a java/HTML application that would satisfy the following requirements:
+	<ul class="project-details-list">
+		<li> Inventory minimum: 10 cars. </li>
+		<li> Car information:
+			<ol>
+				<li>Manufacturer Name</li>
+				<li>Date of purchase (dealer/owner)</li>
+				<li>Price and Auction Price (x> 90% of MSRP)</li>
+				<li>Year and Model</li>
+				<li>Odometer Reading</li>
+			</ol>
+		</li>
+		<li> Business Reports Section</li>
+		<li> Ability to add/search/remove("Sell") for cars</li>
+		<li> Auction cars that have been on the lot for 120+ days</li>
+	</ul>
+</p>
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cody's Car Lot</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="./styles/styles.css">
+
+
+</head>
+<body>
+
+
+<span class="top-banner" id="top-banner-home">Welcome to Cody's Car Lot!</span>
+
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Quick Nav
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="homePage.jsp">Home Page</a>
+    <a class="dropdown-item" href="inventory.jsp">Inventory</a>
+    <a class="dropdown-item" href="auction.jsp">Auction Page</a>
+    <a class="dropdown-item" href="businessPage.jsp">Business Reports</a>
+  </div>
+</div>
+
+
+<p class="home-paragraph"> This project completes the assigned "Car Dealership Project." The tasking for this was
+to create a java/HTML application that would satisfy the following requirements:
+	<ul class="project-details-list">
+		<li> Inventory minimum: 10 cars. </li>
+		<li> Car information:
+			<ol>
+				<li>Manufacturer Name</li>
+				<li>Date of purchase (dealer/owner)</li>
+				<li>Price and Auction Price (x> 90% of MSRP)</li>
+				<li>Year and Model</li>
+				<li>Odometer Reading</li>
+			</ol>
+		</li>
+		<li> Business Reports Section</li>
+		<li> Ability to add/search/remove("Sell") for cars</li>
+		<li> Auction cars that have been on the lot for 120+ days</li>
+	</ul>
+</p>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
+

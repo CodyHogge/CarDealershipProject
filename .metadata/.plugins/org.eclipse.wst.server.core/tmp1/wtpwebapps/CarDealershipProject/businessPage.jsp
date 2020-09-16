@@ -1,0 +1,146 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Cody's Car Lot</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+
+<span class="top-banner">Welcome to the Business Page!</span>
+
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Quick Nav
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="homePage.jsp">Home Page</a>
+    <a class="dropdown-item" href="inventory.jsp">Inventory</a>
+    <a class="dropdown-item" href="auction.jsp">Auction Page</a>
+    <a class="dropdown-item" href="businessPage.jsp">Business Reports</a>
+  </div>
+</div>
+
+<h3>Business Analytics</h3>
+<p class="business-analytics-paragraph">This section will display the business details for the car lot.
+	<table class="business-table">
+		<tr>
+			<th>Cars on Lot</th>
+			<th>Cars Sold</th>
+			<th>Income</th>
+		</tr>
+		<tr>
+			<td>${inventoryList.size()}</td>
+			<td>${soldList.size()}</td>
+			<td>Money made goes here</td>
+		</tr>
+	</table>
+
+<h3>Inventory Actions</h3>
+<form class="inventoryActionContainer" id="inventoryActionContainer" action="inventoryUpdateServlet" method="post">
+	<select class="form-control" name="action" id="action">
+		<option value="add">Add</option>
+		<option value="remove">Remove</option>
+		<option value="sell">Sell</option>
+	</select>
+		<div class="form-group">
+			<label for="make"> Make: </label>
+			<select class="form-control" name="make" id="make">
+				<option value="mazda">Mazda</option>
+				<option value="toyota">Toyota</option>
+				<option value="ford">Ford</option>
+			</select>
+		</div>
+		<div class="form-group">
+				<select class="form-control" name="model" id="model">
+					<option value="mazda3">Mazda3</option>
+					<option value="cx5">CX5</option>
+					<option value="corolla">Corolla</option>
+					<option value="mustang">Mustang</option>
+				</select>
+		</div>
+		<div class="form-group">
+			<label for="vin">VIN: </label>
+			<input type="text" class="form-control" name="vin" id="vin" placeholder="ex. 1234M">
+		</div>
+		<div class="form-group">
+			<label for="ownerName">Owner Name: </label>
+			<input type="text" class="form-control" name="ownerName" id="ownerName" placeholder="Name">
+		</div>
+		<div class="form-group">
+			<label for="msrp">MSRP: </label>
+			$<input type="text" class="form-control" name="msrp" id="msrp" placeholder="19000">
+		</div>
+		<div class="form-group">
+			<label for="year">Year: </label>
+			<input type="text" class="form-control" name="year" id="year" placeholder="year">
+		</div>
+		<div class="form-group">
+			<select class="form-control" name="condition" id="condition">
+				<option value="new">New</option>
+				<option value="used">Used</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="odometer">Odometer: </label>
+			<input type="text" class="form-control" name="odometer" id="odometer" placeholder="ex. 10000">
+		</div>
+		<div class="form-group">
+			<select class="form-control" name="color" id="color">
+				<option value="RED">Red</option>
+				<option value="BLUE">Blue</option>
+				<option value="BLACK">Black</option>
+				<option value="GREEN">Green</option>
+				<option value="WHITE">White</option>
+			</select>
+		</div>
+		<div class="form-group">
+		<h4>Dealer purchase date:</h4>
+			<label for="dealer-mm">Month</label>
+			<input type="text" class="form-control" name="dealer-mm" id="dealer-mm">
+			<label for="dealer-dd">Day</label>
+			<input type="text" class="form-control" name="dealer-dd" id="dealer-dd">
+			<label for="dealer-yyyy">Year</label>
+			<input type="text" class="form-control" name="dealer-yyyy" id="dealer-yyyy">
+		</div>
+		
+		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+	
+	<form class="inventorySellContainer" id="inventorySellContainer" action="inventoryUpdateServlet" method="post">
+		<div class="form-group">
+		<select class="form-control" name="action" id="action">
+			<option value="add">Add</option>
+			<option value="remove">Remove</option>
+			<option value="sell">Sell</option>
+		</select>
+			<label for="buyVin">VIN of car to sell:</label>
+			<input type="text" class="form-control" name="buyVin" id="buyVin" placeholder="1234M">
+		</div>
+		<div class="form-group">
+		<h4>Owner's purchase date:</h4>
+			<label for="dealer-mm">Month</label>
+			<input type="text" class="form-control" name="soldMm" id="soldMm">
+			<label for="dealer-dd">Day</label>
+			<input type="text" class="form-control" name="soldDd" id="soldDd">
+			<label for="dealer-yyyy">Year</label>
+			<input type="text" class="form-control" name="soldYyyy" id="soldYyyy">
+		</div>
+		<div class="form-group">
+			<label for="buyerName">New owner's name:</label>
+			<input type="text" class="form-control" name="buyerName" id="buyerName" placeholder="Owner's name">
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>

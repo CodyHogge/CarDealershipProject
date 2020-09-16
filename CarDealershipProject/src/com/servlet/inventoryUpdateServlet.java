@@ -1,0 +1,157 @@
+package com.servlet;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.system.Car;
+import com.system.Color;
+import com.system.Finance;
+import com.system.Owner;
+
+/**
+ * Servlet implementation class inventoryUpdateServlet
+ */
+@WebServlet("/inventoryUpdateServlet")
+public class inventoryUpdateServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public inventoryUpdateServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(true);
+		double incomeVal = 1.0;//(double) session.getAttribute("incomeVal");
+		List<Car> inventoryList = (List<Car>) session.getAttribute("inventoryList");
+		if(inventoryList == null) {
+			inventoryList = new ArrayList<Car>();
+		}
+		List<Car> soldList = (List<Car>) session.getAttribute("soldList");
+		if(soldList == null) {
+			soldList = new ArrayList<Car>();
+		}
+		
+		String option = request.getParameter("action");
+		switch(option) {
+		case "add":
+			
+			Car addCar = new Car();
+			String make = request.getParameter("make");
+			addCar.setMake(make);
+			String model = request.getParameter("model");
+			addCar.setModel(model);
+			String vin = request.getParameter("vin");
+			addCar.setVin(vin);
+			String ownerName = request.getParameter("ownerName");
+			Owner owner = new Owner(ownerName);
+			addCar.setOwner(owner);
+			Double msrp = Double.parseDouble(request.getParameter("msrp"));
+			addCar.setMsrp(msrp);
+			addCar.setAuctionMin();
+			LocalDate currentDate = LocalDate.now();
+			String condition = request.getParameter("condition");
+			addCar.setCondition(condition);
+			int year = Integer.parseInt(request.getParameter("year"));
+			addCar.setYear(year);
+			int odometer = Integer.parseInt(request.getParameter("odometer"));
+			addCar.setOdometer(odometer);
+			String mm = (request.getParameter("dealer-mm"));
+			String dd = (request.getParameter("dealer-dd"));
+			String yyyy = (request.getParameter("dealer-yyyy"));
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+			String dateInfo = yyyy + " " + mm + " " + dd;
+			LocalDate dealerDate = LocalDate.parse(dateInfo, formatter);
+			addCar.setDealerDate(dealerDate);
+			addCar.setDaysOnLot(currentDate);
+			String color = request.getParameter("color");
+			Color carColor = Color.valueOf(color);
+			addCar.setColor(carColor);
+			
+			
+			inventoryList.add(addCar);
+			break;
+		case "remove":
+			
+			String removeVin = request.getParameter("vin");
+			for(int i=0;i<inventoryList.size();i++) {
+				if(inventoryList.get(i).getVin().equals(removeVin)) {
+					inventoryList.remove(i);
+					}
+			}
+			
+			break;
+		case "sell":
+			
+			String soldMm = (request.getParameter("soldMm"));
+			String soldDd = (request.getParameter("soldDd"));
+			String soldYyyy = (request.getParameter("soldYyyy"));
+			String soldDate = soldYyyy + " " + soldMm + " " + soldDd;
+			formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+			LocalDate sellDate = LocalDate.parse(soldDate, formatter);
+			String buyerName = request.getParameter("buyerName");
+			Owner buyer = new Owner(buyerName);
+			
+			String buyVin = request.getParameter("vin");
+			for(int i=0;i<inventoryList.size();i++) {
+				if(inventoryList.get(i).getVin().contains(buyVin)) {
+					inventoryList.get(i).setCondition("sold");
+					inventoryList.get(i).setOwner(buyer);
+					inventoryList.get(i).setOwnerDate(sellDate);
+					soldList.add(inventoryList.get(i));
+					String method = request.getParameter("sell-method");
+					if(method == "auction") {
+						incomeVal = incomeVal + inventoryList.get(i).getAuctionPrice();
+						}else if(method == "sell"){
+						incomeVal = incomeVal + inventoryList.get(i).getMsrp();
+					}
+					inventoryList.remove(i);
+					
+				}
+			}
+			
+			
+			break;
+		case "update":
+			break;
+		default:
+			
+		}
+		
+		session.setAttribute("incomeVal", incomeVal);
+		session.setAttribute("soldList", soldList);
+		session.setAttribute("inventoryList", inventoryList);
+		RequestDispatcher rs = request.getRequestDispatcher("booted_inventory.jsp");
+		rs.forward(request, response);
+		
+		
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

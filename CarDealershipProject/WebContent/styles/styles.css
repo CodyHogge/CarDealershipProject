@@ -1,0 +1,57 @@
+.top-banner{
+	font-variant: small-caps;
+	font-size: 16pt;
+	border-style: dotted;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-color: black;
+	background-color: #d5d5d5;
+	color: orange;	
+}
+
+.avail-cars{
+	margin: 15px;
+	background-color: #d5d5d5;
+	border-style: solid;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-color: black;
+}
+
+.avail-cars.td{
+	background-color: gray;
+	border-style: solid;
+	border-right-width: 2px;
+	border-left-width: 2px;
+	border-top-width: 2px;
+	border-bottom-width: 2px;
+	border-color: black;
+}
+
+.sold-cars{
+	margin: 15px;
+	background-color: #d5d5d5;
+	border-style: solid;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-color: black;
+}
+
+.h4{
+	margin: 10px;
+	font-variant: small-caps;	
+}
+
+.display-3 {
+	font-variant: small-caps !important; 
+}
+
+.jumbotron {
+	font-variant: small-caps!important;
+}

@@ -70,17 +70,16 @@
         			</ul>
       			</div>
     		</nav>
-  		</div>
-	</div>
+  		
 
-	<form action="inventoryUpdateServlet" method="post">
+	<form action="inventoryUpdateServlet" method="post" class="ml-3">
   		<div class="form-row">
   			<div class="form-group col-md-2">
       			<select name="action" id="action" class="form-control">
       				<option>Select Action...</option>
       				<option value="add">Add</option>
       				<option value="remove">Remove</option>
-      				<option value="sell">Sell</option>
+      				<!-- <option value="sell">Sell</option> -->
       			</select>
     		</div>
     		<div class="form-group col-md-2">
@@ -101,9 +100,15 @@
       			</select>
     		</div>
   		</div>
-  		<div class="form-group">
+  		<div class="form-row">
+  		
 			<label for="vin">VIN: </label>
 			<input type="text" class="form-control col-md-2" name="vin" id="vin" placeholder="ex. 1234M">
+		
+		
+			<label class="ml-5" for="odometer">Odometer: </label>
+			<input type="text" class="form-control col-md-2" name="odometer" id="odometer" placeholder="ex. 10000">
+		
 		</div>
 		<div class="form-group">
 			<label for="ownerName">Owner Name: </label>
@@ -111,24 +116,20 @@
 		</div>
 		<div class="form-group">
 			<label for="msrp">MSRP: </label>
-			$<input type="text" class="form-control col-md-2" name="msrp" id="msrp" placeholder="19000">
+			<input type="text" class="form-control col-md-2" name="msrp" id="msrp" placeholder="19000">
 		</div>
 		<div class="form-group">
 			<label for="year">Year: </label>
 			<input type="text" class="form-control col-md-2" name="year" id="year" placeholder="year">
 		</div>
-		<div class="form-group">
-			<label for="odometer">Odometer: </label>
-			<input type="text" class="form-control col-md-2" name="odometer" id="odometer" placeholder="ex. 10000">
-		</div>
-			<div class="form-group">
+			<div class="form-row form-group">
 				<h4>Dealer purchase date:</h4>
-					<label for="dealer-mm">Month</label>
-					<input type="text" class="form-control col-md-2" name="dealer-mm" id="dealer-mm">
-					<label for="dealer-dd">Day</label>
-					<input type="text" class="form-control col-md-2" name="dealer-dd" id="dealer-dd">
-					<label for="dealer-yyyy">Year</label>
-					<input type="text" class="form-control col-md-2" name="dealer-yyyy" id="dealer-yyyy">
+					<label class="ml-3" for="dealer-mm">Month</label>
+					<input class="ml-1" type="text" class="form-control col-md-2" name="dealer-mm" id="dealer-mm">
+					<label class="ml-3" for="dealer-dd">Day</label>
+					<input class="ml-1" type="text" class="form-control col-md-2" name="dealer-dd" id="dealer-dd">
+					<label class="ml-3" for="dealer-yyyy">Year</label>
+					<input class="ml-1" type="text" class="form-control col-md-2" name="dealer-yyyy" id="dealer-yyyy">
 			</div>
     	<div class="form-group col-md-2">
       		<label for="color">Color</label>
@@ -147,26 +148,48 @@
 				<option value="used">Used</option>
 			</select>
 		</div>
+		
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+
+
+	<c:if test="${inventoryList.size() != 0}"> 
+	<form action="sellServlet" method="post" class="ml-3">	
+		<h3>***This section is only for selling inventory***</h3>
+		<div class="form-row">
+		<div class="form-group col-md-2">
+			<select class="form-control" name="sellMethod" id="sellMethod">
+				<option value="sale">Sale</option>
+				<option value="auction">Auction</option>
+			</select>
+		</div>
+		<div class="form-group col-md-2">
+			<select class="form-control" name="sellVin" id="sellVin">
+				<c:forEach var="car" items="${inventoryList}">
+					<option value="${car.getVin()}">${car.getYear()} ${car.getModel()} ${car.getVin()}</option>
+				</c:forEach>
+			</select>
+		</div>
+		</div>	
 		<div class="form-group">
 			<label for="ownerName">Owner Name: </label>
 			<input type="text" class="form-control col-md-2" name="buyerName" id="buyerName" placeholder="Name">
 		</div>
-		
-		<h3>***This section is only for the action "Sell"***</h3>
-		<div class="form-group">
-				<h4>Owner purchase date:</h4>
-					<label for="soldMm">Month</label>
-					<input type="text" class="form-control col-md-2" name="soldMm" id="soldMm">
-					<label for="soldDd">Day</label>
-					<input type="text" class="form-control col-md-2" name="soldDd" id="soldDd">
-					<label for="soldYyyy">Year</label>
-					<input type="text" class="form-control col-md-2" name="soldYyyy" id="soldYyyy">
-			</div>
-		
-		
-		
+		<div class="form-row">
+			<h4>Owner purchase date:</h4>
+				<label class="ml-3" for="soldMm">Month</label>
+				<input class="ml-1" type="text" class="form-control col-md-2" name="soldMm" id="soldMm">
+				<label class="ml-3" for="soldDd">Day</label>
+				<input class="ml-1" type="text" class="form-control col-md-2" name="soldDd" id="soldDd">
+				<label class="ml-3" for="soldYyyy">Year</label>
+				<input class="ml-1" type="text" class="form-control col-md-2" name="soldYyyy" id="soldYyyy">
+		</div>
   		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
+	</c:if>
+	
+</div>
+	</div>
 
 </body>
 </html>

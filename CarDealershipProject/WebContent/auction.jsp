@@ -1,3 +1,12 @@
+<!-- 
+
+**UNUSED JSP,
+
+KEEPING JUST FOR REFERENCING/PRACTICING
+
+
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -54,8 +63,12 @@ we have made! The goal will be to use a react system to refresh the table contai
 	<c:if test="${car.daysOnLot > 119}">
 		<table>
 			<tr>
-				<th>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Bid</th>
 			<tr>
+				<td><c:out value="${car.year} ${car.make} ${car.model}"
+				<td><c:out value="${car.getAuctionPrice}
 				<td><a href="auctionServlet?vin=${car.vin}"><button class="bid-btn" onclick="auctionServlet" id="bid-btn" value="bid">Bid Now!</button></a></td>
 			</tr>
 		</table>	
@@ -66,3 +79,5 @@ we have made! The goal will be to use a react system to refresh the table contai
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
+
+!-->

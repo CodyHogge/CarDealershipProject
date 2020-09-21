@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -40,7 +41,15 @@ public class inventoryUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
-		double incomeVal = 1.0;//(double) session.getAttribute("incomeVal");
+		String income = (String) session.getAttribute("incomeVal");
+		double incomeVal;
+		if(income == null) {
+			incomeVal = 0.0;
+		} else {
+			incomeVal = Double.parseDouble(income);
+		}
+		
+		
 		List<Car> inventoryList = (List<Car>) session.getAttribute("inventoryList");
 		if(inventoryList == null) {
 			inventoryList = new ArrayList<Car>();
@@ -85,6 +94,7 @@ public class inventoryUpdateServlet extends HttpServlet {
 			String color = request.getParameter("color");
 			Color carColor = Color.valueOf(color);
 			addCar.setColor(carColor);
+			addCar.setBids(0);
 			
 			
 			inventoryList.add(addCar);

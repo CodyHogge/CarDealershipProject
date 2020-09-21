@@ -86,19 +86,21 @@
               			<th>Miles</th>
               			<th>Condition</th>
               			<th>Current Bid Price</th>
+              			<th>Number of bids</th>
               			<th></th>
             		</tr>
           		</thead>
           		<tbody>
           			<c:forEach var="car" items="${inventoryList}">
-          				<c:if test="${car.getDaysOnLot >= 120}">
+          				<c:if test="${car.getDaysOnLot() >= 120}">
           					<tr>
               					<td>Picture</td>
-              					<td>Name</td>
-              					<td>Miles</td>
-              					<td>Condition</td>
-              					<td>Auction Price</td>
-              					<td>Bid button</td>
+              					<td><c:out value="${car.getYear()} ${car.getMake()} ${car.getModel()}"/></td>
+              					<td><c:out value="${car.getOdometer()}"/></td>
+              					<td><c:out value="${car.getCondition()}"/></td>
+              					<td><c:out value="${car.getAuctionPrice()}"/></td>
+              					<td><c:out value="${car.getBids()}"/></td>
+              					<td><a href="auctionServlet?vin=${car.getVin()}"><button class="bid-btn" onclick="auctionServlet" id="bid-btn" value="bid">Bid Now!</button></a></td>
             				</tr>
             			</c:if>
           			</c:forEach>

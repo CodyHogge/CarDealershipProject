@@ -70,7 +70,14 @@
         </ul>
       </div>
     </nav>
+    
+    <h1>This is the total income value: <p>${incomeVal}</p></h1>
+    <h2>This is the total number of cars sold: <p>${soldList.size()}</p></h2>
+    
+    
   </div>
 </div>
+
+
 </body>
 </html>

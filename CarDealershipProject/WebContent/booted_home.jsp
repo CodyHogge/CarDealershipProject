@@ -26,7 +26,9 @@
 	<div class="jumbotron">
     <div class="container">
       <h1 class="display-3">The Home Page</h1>
-      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
+      I am working on this page as a means to test functionality. I have practiced some formatting and bootstrapping for this project; however, my main goal is to provide a 
+      working product that satisfies the assigned project. </p>
     </div>
   	</div>
 

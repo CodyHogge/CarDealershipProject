@@ -3,6 +3,7 @@ package com.servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,6 @@ public class auctionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		List<Car> inventoryList = (List<Car>) session.getAttribute("inventoryList");
-		double incomeVal = (double) session.getAttribute("incomeVal");
 		String auctionVin = request.getParameter("vin");
 		for(int i=0;i<inventoryList.size();i++) {
 			if(inventoryList.get(i).getVin().equals(auctionVin)) {
@@ -42,13 +42,21 @@ public class auctionServlet extends HttpServlet {
 					double auctionPrice = inventoryList.get(i).getAuctionMin();
 					inventoryList.get(i).setAuctionPrice(auctionPrice);
 				} else {
-					inventoryList.get(i).setAuctionPrice(bids * 500);
+					double auctionPrice = inventoryList.get(i).getAuctionPrice();
+					inventoryList.get(i).setAuctionPrice(auctionPrice);
 				}
+					double bidVal = bids * 500.00;
+					inventoryList.get(i).setAuctionPrice(inventoryList.get(i).getAuctionPrice() + bidVal);
+				
 				bids++;
 				inventoryList.get(i).setBids(bids);
 				
 			}
 		}
+		
+		session.setAttribute("inventoryList", inventoryList);
+		RequestDispatcher rs = request.getRequestDispatcher("booted_auction.jsp");
+		rs.forward(request, response);
 		
 	}
 
